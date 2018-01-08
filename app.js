@@ -2,6 +2,7 @@ var express = require('express');
 var app = express(); //init Express
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var user = require('./models/user.model');
 
 mongoose.connect('mongodb://localhost/mydbproject');
 
@@ -12,6 +13,7 @@ mongoose.connection.on('error', (err) => {
 
 mongoose.connection.on('open', (success) => {
     console.log('Connected to mongo server');
+    console.log('User model user', user);
 });
 
 //init bodyParser to extract properties from POST data
