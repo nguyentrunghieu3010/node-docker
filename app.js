@@ -2,9 +2,11 @@ var express = require('express');
 var app = express(); //init Express
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var config = require('./config/environment/database_info');
+
 var user = require('./models/user.model');
 
-mongoose.connect('mongodb://localhost/mydbproject');
+mongoose.connect(config.mongo.uri, config.mongo.options);
 
 mongoose.connection.on('error', (err) => {
     console.error(`MongoDB connection error: ${err}`);
