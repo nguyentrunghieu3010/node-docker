@@ -3,8 +3,7 @@ var app = express(); //init Express
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var config = require('./config/environment/database_info');
-
-var user = require('./models/user.model');
+var userController = require('./controller/user-controller');
 
 mongoose.connect(config.mongo.uri, config.mongo.options);
 
@@ -15,12 +14,18 @@ mongoose.connection.on('error', (err) => {
 
 mongoose.connection.on('open', (success) => {
     console.log('Connected to mongo server');
-    console.log('User model user', user);
 });
 
 //init bodyParser to extract properties from POST data
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+
+app.post('/createUser', (req, res) => {
+    userController.createUser(req, (result) => {
+        res.send(result);
+    });
+});
 
 var port = process.env.PORT || 8080;
 
