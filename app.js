@@ -27,9 +27,8 @@ var port = process.env.PORT || 8080;
 var router = express.Router();
 
 router.route('/createUser').post((req, res) => {
-    console.log('userController :', req.body);
-    userController.createUser(req.body, (req, res) => {
-        res.send(res);
+    userController.createUser(req.body, (data) => {
+        res.send(data);
     });
 });
 

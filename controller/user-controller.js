@@ -1,17 +1,13 @@
 var User = require('../models/user.model');
 
-exports.createUser = (req, callback) => {
-    console.log('Request body object', req);
-
+exports.createUser = (object, callback) => {
     var user = new User();
-    user.username = req.username;
-    user.password = req.password;
+    user.username = object.username;
+    user.password = object.password;
 
-    user.save((err) => {
+    user.save((err, data) => {
         if (err)
             res.send(err);
-        res.json({ message: 'Contact created!' });
+        return callback(data);
     });
-
-    return callback(res);
 }
