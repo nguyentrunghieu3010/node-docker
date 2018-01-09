@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var config = require('./config/environment/database_info');
 var userController = require('./controller/user-controller');
 
+
 mongoose.connect(config.mongo.uri, config.mongo.options);
 
 mongoose.connection.on('error', (err) => {
@@ -20,17 +21,22 @@ mongoose.connection.on('open', (success) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
-app.post('/createUser', (req, res) => {
-    userController.createUser(req, (result) => {
-        res.send(result);
-    });
-});
-
 var port = process.env.PORT || 8080;
 
 //init Express Router
 var router = express.Router();
 
+router.route('/createUser').post((req, res) => {
+    console.log('userController :', req.body);
+    userController.createUser(req.body, (req, res) => {
+        res.send(res);
+    });
+});
+
+router.route('/').get((req, res) => {
+    res.json({ message: 'App is running!' });
+});
+
+app.use(router);
 app.listen(port);
 console.log('Listening on port ' + port);
