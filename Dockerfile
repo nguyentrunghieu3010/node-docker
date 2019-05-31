@@ -1,8 +1,7 @@
-FROM node:10.3.0-alpine
-WORKDIR /app
-COPY package.json /app/package.json
+FROM node:10
+WORKDIR /src
+COPY package*.json ./
 RUN npm install
-COPY . /app
-RUN node -v
-RUN ls
-RUN pwd
+COPY . .
+EXPOSE 8080
+CMD [ "npm", "start" ]
