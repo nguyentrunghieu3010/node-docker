@@ -6,6 +6,6 @@
 ```
 > docker build -t node-docker-starter .
 
-> docker run -d -p 9000:8080 node-docker-starter
+> docker run  -p 9000:8080 -d hieunt1/node-docker-starter
 
 > docker ps
