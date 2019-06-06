@@ -4,8 +4,8 @@
 
     https://tutorialedge.net/docker/working-with-docker-nodejs/
 ```
-> docker build -t node-docker-starter .
+> docker build -t node-docker .
 
-> docker run  -p 9000:8080 -d hieunt1/node-docker-starter
+> docker run -d -p 9000:8080 node-docker
 
 > docker ps
