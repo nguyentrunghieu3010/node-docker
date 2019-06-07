@@ -6,9 +6,9 @@
   "scripts": {
     "test": "make test",
     "build": "tsc",
-    "local": "nodemon ./dist/app.js",
+    "local": "tsc && nodemon ./dist/app.js",
     "compile": "rm -rf dist/ && tsc -p . && babel src --out-dir dist --source-maps inline --copy-files",
-    "start": "node src/app.js"
+    "start": "nodemon src/app.js"
   },
   "repository": {
     "type": "git",
