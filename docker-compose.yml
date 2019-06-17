@@ -1,0 +1,6 @@
+version: '3'
+services:
+  dist:
+    build: .
+    ports:
+      - "9000:8080"
